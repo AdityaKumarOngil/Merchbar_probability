@@ -114,6 +114,7 @@ def get_probability(df, brand, subcategory, min_revenue, max_revenue):
             x = crosstab_probability(df, prob_attr, cond_attr ).loc[brand][subcategory] * prob1
         else:
             x = crosstab_probability(df.query(str3), prob_attr, cond_attr ).loc[brand][subcategory] * prob1
+        output = brand+' is already selling '+subcategory+' and the likelihood that they are generating a revenue between $'+str(min_revenue)+' and $'+str(max_revenue)+' is: '+str(round(x*100, 2))+'%'
     elif brand not in lst_patch:
         new_df = pd.DataFrame(columns = df.columns)
         for ii in lst_patch:
@@ -219,7 +220,7 @@ def get_probability(df, brand, subcategory, min_revenue, max_revenue):
             x = crosstab_probability(new_df, cond_attr, prob_attr).loc[subcategory][genre] * prob1
         else:
             x = crosstab_probability(new_df.query(str3), cond_attr, prob_attr).loc[subcategory][genre] *prob1
-    output = 'The likelihood of '+brand+' selling '+subcategory+' for a revenue between $'+str(min_revenue)+' and $'+str(max_revenue)+' is: '+str(round(x*100, 2))+'%'
+        output = 'The likelihood of '+brand+' selling '+subcategory+' for a revenue between $'+str(min_revenue)+' and $'+str(max_revenue)+' is: '+str(round(x*100, 2))+'%'
     return(output)
 
 input1 = input('Enter the band of interest: ')
